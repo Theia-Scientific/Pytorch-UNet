@@ -2,23 +2,16 @@ import torch
 from unet import UNet as _UNet
 
 
-def unet_carvana(
-    in_channels=3,
-    out_channels=2,
-    init_features=64,
-    bilinear=False,
-    pretrained=False,
-    scale=0.5,
-):
+def unet_carvana(pretrained=False, scale=0.5):
     """
     UNet model trained on the Carvana dataset ( https://www.kaggle.com/c/carvana-image-masking-challenge/data ).
     Set the scale to 0.5 (50%) when predicting.
     """
     net = _UNet(
-        in_channels=in_channels,
-        out_channels=out_channels,
-        init_features=init_features,
-        bilinear=bilinear,
+        in_channels=3,
+        out_channels=2,
+        init_features=64,
+        bilinear=False,
     )
     if pretrained:
         if scale == 0.5:
